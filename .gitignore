@@ -1,0 +1,4 @@
+__pycache__/
+.mypy_cache/
+workshop/
+.garden_quest_save.json
