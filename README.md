@@ -1,75 +1,100 @@
-# 🌱 Garden Quest — the Exception Grimoire
+# MATRIX//QUEST
 
-A terminal RPG that teaches the **Garden Guardian** project (Python
-exception handling: `try`, `except`, `raise`, custom errors, `finally`).
+*Wake up, Neo... The Matrix has you.*
 
-The Chaos Blight is corrupting the sensors of the Enchanted Greenhouse.
-To save it, you learn one spell per chapter. Each chapter is one exercise
-of the subject:
+A browser RPG where **you are Neo** and learn the four Python projects of the
+curriculum. Every chapter is one exercise of a subject. You meet the crew, train
+with short lessons, fight code riddles that **real Python** checks, then **forge**
+the code yourself. At the end of each world, the game checks **your real
+project** (`ex0/`, `ex1/`, ...).
 
-| Chapter | Monster | Spell | Subject exercise |
-|---|---|---|---|
-| 0. The Whispering Thermometer | Garbled Gremlin | `try` / `except` | ex0 `ft_first_exception.py` |
-| 1. The Ember Drake | Ember Drake | `raise` | ex1 `ft_raise_exception.py` |
-| 2. The Hydra of Many Heads | Hydra | many `except` clauses | ex2 `ft_different_errors.py` |
-| 3. The Mimic Seeds | Mimic Seedling | your own exception classes | ex3 `ft_custom_errors.py` |
-| 4. The Eternal Fountain | Flood Serpent | `finally` | ex4 `ft_finally_block.py` |
-| 5. The Garden Guardian | Murphy the Blight King | defense questions + **your real project** | all |
+| World | Mentor | Project | What you learn | Chapters |
+|---|---|---|---|---|
+| 1. The Construct | Morpheus | Code Cultivation | `__main__`, classes, methods, `__init__`, encapsulation, inheritance, static/class methods, nested classes | 7 |
+| 2. Agent Protocols | Trinity | Garden Guardian | `try`/`except`, `raise`, error types, custom exceptions, `finally` | 5 |
+| 3. The Oracle | The Oracle | Data Quest | `sys.argv`, lists, tuples, sets, dicts, generators, comprehensions | 7 |
+| 4. The Keymaker | The Keymaker | Data Archivist | `open`/`read`/`write`/`close`, stdin/stdout/stderr, `with` | 4 |
 
-## How to play
-
-```bash
-python3 play.py          # start or continue (needs Python 3.10+)
-python3 play.py --fast   # no typewriter effect
-python3 play.py --reset  # start over
-```
-
-Type `quit` at any prompt to save and leave. Progress is saved automatically.
-
-Each chapter has three parts:
-
-1. **📖 The Grimoire** – short lessons with examples.
-2. **⚔ The battle** – code riddles ("what does this print?", "fill the
-   blank"). A right answer hits the monster, a wrong one costs a heart and
-   the riddle comes back later. After each answer the **🔮 Crystal Ball**
-   runs the code with real Python, so you see what actually happens.
-3. **⚒ The Spell Forge** – you write real code. The game creates a file in
-   `workshop/` with a skeleton, you fill it in with your own editor, and the
-   forge tests it (and runs flake8 / mypy if they are installed). The forge
-   trials are the subject's exercises *in disguise* (mana instead of
-   temperature, potions instead of plants), so you practise the idea without
-   copying an answer.
-
-In the **finale** you answer the questions a peer might ask at your defense,
-then write the real `ex0/`…`ex4/` files yourself. The **Final Trial** checks
-them like an evaluator would: files and function names, type hints, `try` /
-`raise` / `finally`, no `type()` in ex2, the program never crashes, the
-output covers every case, flake8 and mypy.
-
-You can also run that check anytime, outside the game:
+## Play
 
 ```bash
-python3 play.py --check /path/to/your/project
+python3 play.py
 ```
 
-The **🔮 Crystal Ball sandbox** in the main menu lets you type any Python
-and see what it does — perfect for "what if I…" experiments.
+That's all: it starts a small local server and opens the game in your
+browser (Python 3.10+, no packages needed). If the browser doesn't open, go
+to the address printed in the terminal. Press `Ctrl+C` in the terminal to stop.
 
 ```bash
-pip install flake8 mypy   # recommended: the subject requires both
+pip install flake8 mypy                # recommended: the subjects require both
+python3 play.py --no-browser           # only print the address
+python3 play.py --reset                # forget your progress
+python3 play.py --check w2 ~/my-repo   # check a real project in the terminal
 ```
 
-## Peek behind the curtain
+## How a chapter works
 
-The game itself is written with the spells it teaches. Once you know them,
-look at the code:
+1. **Briefing**: the crew explains the mission (story).
+2. **Training**: 2–4 short lessons with examples. Click **▶ Try it** to open any
+   example in the Construct and run it.
+3. **Fight**: code riddles like "What does this print?" or "Fill in the blank".
+   A right answer hits the enemy; a wrong one costs a heart and the riddle comes
+   back later. After each answer, **Tank's console** shows what real Python
+   printed.
+4. **Forge**: you write a real file in `workshop/`, in the built-in editor or
+   in your own (VS Code, vim...; press **↻ Reload file** after editing outside).
+   **▶ Run** runs it with the arguments and input you choose. **✔ Test my code**
+   runs the trials and tells you exactly what is wrong. Once everything passes,
+   flake8 and mypy also run.
 
-- `garden_quest/battle.py` defines a custom `HeroFainted` exception and
-  *raises* it when you run out of hearts; `garden_quest/game.py` *catches*
-  it so the game never crashes.
-- `garden_quest/forge.py` raises `ForgeFailure` from each check and catches
-  it to show you a friendly message.
-- `garden_quest/hero.py` catches `FileNotFoundError` and
-  `json.JSONDecodeError` separately when loading your save.
-- `garden_quest/game.py` saves your progress in a `finally:` block, so
-  even quitting with Ctrl+C keeps your progress.
+The forge trials are the subject's exercises **in disguise**: a `Program` class
+instead of `Plant`, signals instead of temperatures, an armory instead of an
+inventory... You practise the idea without copying an answer.
+
+**Final test** of each world: the evaluators' questions (a boss fight), then the
+project checker reads the folder that holds your `ex0/`, `ex1/`... It runs every
+exercise like an evaluator would and lists what passes, what fails, and which
+functions are not on the authorized list. It never writes your exercises for
+you, and it doesn't replace a peer evaluation: be ready to explain every line.
+
+## Easy to read
+
+Open **⚙ Settings** to change:
+
+- the text size (4 sizes)
+- the theme: Matrix (black and green), Calm dark, or Light
+- the digital rain in the background (on or off)
+- the typewriter effect for dialogue (on or off)
+
+It also works on a phone-sized window. Keyboard shortcuts:
+
+- <kbd>Enter</kbd> continues the dialogue
+- <kbd>1</kbd>–<kbd>4</kbd> answer a riddle
+- <kbd>Ctrl</kbd>+<kbd>S</kbd> saves in the forge
+- <kbd>Ctrl</kbd>+<kbd>Enter</kbd> tests in the forge, or runs in the Construct
+
+## Under the hood
+
+```
+play.py                  starts the server (or --check in the terminal)
+matrix_quest/
+  server.py              local HTTP server + JSON API for the browser
+  harness.py             runs a trial's checks in a separate Python process
+  forge.py               helpers the checks use (call, script, need...)
+  checker.py             the real-project checker
+  runner.py              runs code snippets (Tank's console, the Construct)
+  progress.py            your save file (.matrix_save.json)
+  model.py               dataclasses: World, Chapter, Riddle, Trial...
+  worlds/                the content: one file per project
+web/                     the browser UI (HTML/CSS/JS, CodeMirror bundled)
+```
+
+Your code always runs in a **separate process** with a time limit, so an
+infinite loop or a crash can't break the game. The server only listens on
+`127.0.0.1`, and every request that runs code must carry a secret token that
+only the page served by the game knows.
+
+The game uses what it teaches. `harness.py` and `forge.py` raise and catch
+their own `ForgeFailure` exception. `server.py` turns a `BadRequest` exception
+into an HTTP error. `play.py` closes the server in a `finally:` block. The
+content in `worlds/` is built from dataclasses, lists and dicts.

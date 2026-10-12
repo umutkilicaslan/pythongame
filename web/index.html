@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="matrix" data-size="m">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="matrix-token" content="__TOKEN__">
+  <title>Matrix Quest</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23010603%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%233dff7f%22 font-family=%22monospace%22%3E%3E_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Share+Tech+Mono&display=swap">
+  <link rel="stylesheet" href="vendor/codemirror.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="rain" aria-hidden="true"></canvas>
+
+  <div id="boot" class="boot" hidden></div>
+
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Show chapters">☰</button>
+      <a class="logo" href="#/home">MATRIX<span>//</span>QUEST</a>
+      <div class="status" id="status"></div>
+      <nav class="top-actions">
+        <a class="btn ghost" href="#/construct" title="Run any Python code">⌨<span> Construct</span></a>
+        <button class="btn ghost" id="settingsBtn" title="Text size, theme, effects">⚙<span> Settings</span></button>
+      </nav>
+    </header>
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main" id="main" tabindex="-1"></main>
+  </div>
+
+  <dialog id="settings" class="modal">
+    <form method="dialog">
+      <h2>Settings</h2>
+      <fieldset>
+        <legend>Text size</legend>
+        <div class="seg" data-setting="size">
+          <button type="button" data-value="s">A</button>
+          <button type="button" data-value="m">A</button>
+          <button type="button" data-value="l">A</button>
+          <button type="button" data-value="xl">A</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Theme</legend>
+        <div class="seg" data-setting="theme">
+          <button type="button" data-value="matrix">Matrix</button>
+          <button type="button" data-value="calm">Calm dark</button>
+          <button type="button" data-value="light">Light</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Effects</legend>
+        <label class="toggle"><input type="checkbox" data-setting="rain"> Digital rain in the background</label>
+        <label class="toggle"><input type="checkbox" data-setting="typing"> Typewriter effect for dialogue</label>
+      </fieldset>
+      <fieldset>
+        <legend>Progress</legend>
+        <button type="button" class="btn ghost" id="replayIntro">Replay the intro</button>
+        <button type="button" class="btn danger" id="resetProgress">Reset all progress</button>
+      </fieldset>
+      <div class="modal-actions"><button class="btn primary">Done</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/codemirror.js"></script>
+  <script src="vendor/python.js"></script>
+  <script src="vendor/matchbrackets.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
